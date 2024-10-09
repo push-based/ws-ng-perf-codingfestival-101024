@@ -12,6 +12,7 @@ import { MovieCardComponent } from '../movie-card/movie-card.component';
   template: `
     @for (movie of movies(); track movie.id) {
       <movie-card
+        [index]="$index"
         [routerLink]="['/movie', movie.id]"
         [loading]="favoritesLoading().has(movie.id)"
         [favorite]="favoriteMovieIds().has(movie.id)"

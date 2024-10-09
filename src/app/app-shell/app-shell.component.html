@@ -20,11 +20,12 @@
 
     <a
       class="navigation--link"
+      (click)="trackNavigation('my-movies')"
       [routerLink]="['/my-movies']"
       routerLinkActive="active"
     >
       <div class="navigation--menu-item">
-        <fast-svg class="navigation--menu-item-icon" name="account"></fast-svg>
+        <fast-svg class="navigation--menu-item-icon" width="24" height="24" name="account" />
         My Movies
       </div>
     </a>
@@ -33,33 +34,36 @@
 
     <a
       class="navigation--link"
+      (click)="trackNavigation('list/popular')"
       [routerLink]="['/list', 'popular']"
       routerLinkActive="active"
     >
       <div class="navigation--menu-item">
-        <fast-svg class="navigation--menu-item-icon" name="popular" />
+        <fast-svg class="navigation--menu-item-icon" name="popular" width="24" height="24" />
         Popular
       </div>
     </a>
 
     <a
       class="navigation--link"
+      (click)="trackNavigation('list/top-rated')"
       [routerLink]="['/list', 'top_rated']"
       routerLinkActive="active"
     >
       <div class="navigation--menu-item">
-        <fast-svg class="navigation--menu-item-icon" name="top_rated" />
+        <fast-svg class="navigation--menu-item-icon" name="top_rated" width="24" height="24" />
         Top Rated
       </div>
     </a>
 
     <a
       class="navigation--link"
+      (click)="trackNavigation('list/upcoming')"
       [routerLink]="['/list', 'upcoming']"
       routerLinkActive="active"
     >
       <div class="navigation--menu-item">
-        <fast-svg class="navigation--menu-item-icon" name="upcoming" />
+        <fast-svg class="navigation--menu-item-icon" name="upcoming" width="24" height="24" />
         Upcoming
       </div>
     </a>
@@ -69,11 +73,12 @@
     @for (genre of genres$ | async; track genre.id) {
       <a
         class="navigation--link"
+        (click)="trackNavigation('list/genre-' + genre.id)"
         [routerLink]="['/list', 'genre', genre.id]"
         routerLinkActive="active"
       >
         <div class="navigation--menu-item">
-          <fast-svg class="navigation--menu-item-icon" name="genre" />
+          <fast-svg class="navigation--menu-item-icon" name="genre" width="24" height="24" />
           {{ genre.name }}
         </div>
       </a>

@@ -1,11 +1,20 @@
 # Manual Change Detection Exercise
 
-In this exercise we will focus on basic runtime optimizations in angular applications by using our knowledge about
-the `ChangeDetection` system in angular.
+In this exercise we will learn how to use the `ChangeDetectorRef` to manually 
+inform angular about changes when needed.
+
+> [!NOTICE]
+> **REMEMBER** the bug where you have to just _click or hover something_ in the app until your changes are displayed
+> on the screen? We are here to solve it now :).
 
 ## 1. Fix `MovieListPageComponent`
 
-Draft: Open `movie-list-page.component.ts`, inject `ChangeDetectorRef`. Use `markForCheck` after setting the `movies` value.
+This time, we are not missing out an NgZone tick, but we need to inform the framework
+about a change that needs to get detected.
+
+Go to the `movie-list-page.component.ts`:
+* inject `ChangeDetectorRef`
+* use `markForCheck` after setting the `movies` value.
 
 
 <details>
@@ -46,7 +55,11 @@ constructor() {
 
 ## 2. Fix `TiltDirective`
 
-Draft: Open `movie-list-page.component.ts`, inject `ChangeDetectorRef`. Use `markForCheck` after setting the `movies` value.
+Also the tilt effect doesn't work again.
+
+Go to the `tilt.directive.component.ts`:
+* inject `ChangeDetectorRef`
+* use `markForCheck` after setting the `rotate`
 
 <details>
   <summary>markForCheck: TiltDirective</summary>

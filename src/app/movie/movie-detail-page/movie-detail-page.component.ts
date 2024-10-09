@@ -67,7 +67,7 @@ import { MovieListComponent } from '../movie-list/movie-list.component';
                 }
               </div>
             </section>
-            <section>
+            <section class="synopsis">
               <h3>The Synopsis</h3>
               <p>{{ movie.overview || 'no overview available' }}</p>
             </section>

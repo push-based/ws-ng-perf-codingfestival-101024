@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 import { exhaustMap, Observable, scan, startWith, Subject } from 'rxjs';
 
 import { ElementVisibilityDirective } from '../../shared/cdk/element-visibility/element-visibility.directive';
@@ -15,7 +14,7 @@ import { MovieListComponent } from '../movie-list/movie-list.component';
     <div (elementVisible)="paginate$.next()"></div>
   `,
   standalone: true,
-  imports: [MovieListComponent, ElementVisibilityDirective, FastSvgComponent],
+  imports: [MovieListComponent, ElementVisibilityDirective],
 })
 export class MovieListPageComponent {
   private activatedRoute = inject(ActivatedRoute);

@@ -45,7 +45,7 @@ function hasKey<O>(ctx: O, property: KeyOf<O>): ctx is O {
  * */
 function createPropertiesWeakMap<
   O extends Record<string, unknown>,
-  P extends O
+  P extends O,
 >(getDefaults: (o: O) => P) {
   type K = KeyOf<P>;
   const propertyMap = new WeakMap<O, P>();
@@ -72,7 +72,7 @@ function createPropertiesWeakMap<
           } else {
             properties[prop] = value;
           }
-        }
+        },
       );
 
       propertyMap.set(ctx, properties);

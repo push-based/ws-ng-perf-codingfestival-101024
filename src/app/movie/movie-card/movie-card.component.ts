@@ -1,6 +1,13 @@
 import { UpperCasePipe } from '@angular/common';
-import { Component, computed, input, output } from '@angular/core';
-import { FastSvgComponent } from '@push-based/ngx-fast-svg';
+import {
+  Component,
+  computed,
+  ElementRef,
+  inject,
+  input,
+  output,
+} from '@angular/core';
+import { fromEvent } from 'rxjs';
 
 import { TMDBMovieModel } from '../../shared/model/movie.model';
 import { TiltDirective } from '../../shared/tilt.directive';
@@ -10,13 +17,7 @@ import { MovieImagePipe } from '../movie-image.pipe';
 @Component({
   selector: 'movie-card',
   standalone: true,
-  imports: [
-    StarRatingComponent,
-    TiltDirective,
-    UpperCasePipe,
-    MovieImagePipe,
-    FastSvgComponent,
-  ],
+  imports: [StarRatingComponent, TiltDirective, UpperCasePipe, MovieImagePipe],
   template: `
     <div class="movie-card">
       <img
@@ -57,11 +58,15 @@ import { MovieImagePipe } from '../movie-image.pipe';
       transform-origin: bottom;
     }
 
-    .movie-card:hover {
-      .movie-image {
-        transform: scale(1);
+    :host.movie-card--hover {
+      .movie-card {
+        .movie-image {
+          transform: scale(1);
+          font-size: 20px;
+        }
+
+        box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.6);
       }
-      box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.6);
     }
 
     .movie-image {
@@ -84,7 +89,8 @@ import { MovieImagePipe } from '../movie-image.pipe';
   `,
 })
 export class MovieCardComponent {
-  work = input(100);
+  index = input.required<number>();
+  work = input(250);
   workItems = computed(() => new Array(this.work()).fill(null));
 
   movie = input.required<TMDBMovieModel>();
@@ -92,6 +98,18 @@ export class MovieCardComponent {
 
   favorite = input(false);
   favoriteChange = output<boolean>();
+
+  elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+
+  constructor() {
+    fromEvent(this.elementRef.nativeElement, 'mouseenter').subscribe(() => {
+      this.elementRef.nativeElement.classList.add('movie-card--hover');
+    });
+
+    fromEvent(this.elementRef.nativeElement, 'mouseleave').subscribe(() => {
+      this.elementRef.nativeElement.classList.remove('movie-card--hover');
+    });
+  }
 
   toggleFavorite() {
     this.favoriteChange.emit(!this.favorite());

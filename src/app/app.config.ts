@@ -1,4 +1,8 @@
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import {
+  provideHttpClient,
+  withFetch,
+  withInterceptors,
+} from '@angular/common/http';
 import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideFastSVG } from '@push-based/ngx-fast-svg';
@@ -8,11 +12,12 @@ import { readAccessInterceptor } from './read-access.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideHttpClient(withInterceptors([readAccessInterceptor])),
+    provideHttpClient(withFetch(), withInterceptors([readAccessInterceptor])),
     provideRouter(routes),
     provideFastSVG({
       url: (name: string) => `assets/svg-icons/${name}.svg`,
       defaultSize: '12',
     }),
+    // provideClientHydration(withEventReplay()),
   ],
 };

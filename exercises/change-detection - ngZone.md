@@ -21,7 +21,7 @@ If not already the case, insert the `dirty-checks` component into the `MovieCard
 
 <div class="movie-card"
      [tilt]="40">
-  <dirty-checks />
+  <dirty-check />
   <!--  the template-->
 </div>
 
@@ -29,7 +29,7 @@ If not already the case, insert the `dirty-checks` component into the `MovieCard
 
 </details>
 
-Taking a look at the dirty-checks counter in the `MovieCardComponent` when interacting with the `tilt` directive reveals
+Taking a look at the dirty-check counter in the `MovieCardComponent` when interacting with the `tilt` directive reveals
 potential for optimization here.
 
 For the sake of better visual feedback (and dx for this exercise), please turn off `ChangeDetectionStrategy.OnPush` in the `AppComponent`
@@ -207,7 +207,7 @@ ngOnInit() {
 </details>
 
 Great, now don't forget to delete (or comment out) the `@HostListener` & `@HostBinding` callbacks and serve the application.
-You should note that the `dirty-checks` counter of the `AppComponent` still increases, the `MovieCardComponent` doesn't.
+You should note that the `dirty-check` counter of the `AppComponent` still increases, the `MovieCardComponent` doesn't.
 
 Excellent, the first part of our performance improvement was successful. Let's try to not involve our `AppComponent` anymore
 and head to the next exercise.

@@ -1,4 +1,4 @@
-export type coalescingObj = Object;
+export type coalescingObj = NonNullable<unknown>;
 export interface RxCoalescingOptions {
   scope?: coalescingObj;
 }

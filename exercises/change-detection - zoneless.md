@@ -24,7 +24,7 @@ export const appConfig: ApplicationConfig = {
       url: (name: string) => `assets/svg-icons/${name}.svg`,
       defaultSize: '12',
     }),
-    ɵprovideZonelessChangeDetection() // 👈️ add this
+    provideExperimentalZonelessChangeDetection() // 👈️ add this
   ]
 };
 ```
@@ -34,17 +34,15 @@ monkeypatched.
 
 Remove the polyfills section in the angular.json file:
 
-```json
+```diff
 // angular.json
 
-
-"polyfills": [
-"zone.js"
-],
-
+-"polyfills": [
+-  "zone.js"
+-],
 ```
 
-Optionally, also delete the dependency to zone.js from package.json
+[OPTIONAL] Delete the dependency to zone.js from package.json
 
 ```bash
 npm uninstall zone.js
@@ -53,7 +51,31 @@ npm uninstall zone.js
 GREAT!!! Enjoy your application without zone.js. Make sure everything is still running as it should.
 
 
-## Optional: Provide custom change detection scheduler
+<details>
+  <summary>Flamecharts before and after zoneless</summary>
+
+### Before zoneless
+
+zone.js will have all those: 
+
+globalZoneAwareCallback, onInvokeTask, onHasTask, runTask, scheduleTask,
+run, invoke, onInvoke, invoke and then `tick` method.
+
+![before-zoneless.png](images/change-detection/before-zoneless.png)
+
+### After zoneless
+
+Without zone.js, Angular will schedule change detection using either `setTimeout` or `requestAnimationFrame`.
+
+This makes it easier to test and debug your application using flamecharts.
+
+![after-zoneless-flamechart.png](images/change-detection/after-zoneless-flamechart.png)
+
+</details>
+
+
+
+## [OPTIONAL] Provide custom change detection scheduler
 
 Under the hood, we've replaced `NgZone` with a custom ChangeDetectionScheduler which is triggered
 by the framework itself. It is responsible to kick off the global change detection by
@@ -139,7 +161,7 @@ export const appConfig: ApplicationConfig = {
       url: (name: string) => `assets/svg-icons/${name}.svg`,
       defaultSize: '12',
     }),
-    ɵprovideZonelessChangeDetection(),
+    provideExperimentalZonelessChangeDetection(),
     { provide: ɵChangeDetectionScheduler, useClass: CustomChangeDetectionScheduler } // 👈️ add this
   ]
 };

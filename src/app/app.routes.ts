@@ -1,40 +1,31 @@
 import { Routes } from '@angular/router';
 
+import { MovieDetailPageComponent } from './movie/movie-detail-page/movie-detail-page.component';
+import { MovieListPageComponent } from './movie/movie-list-page/movie-list-page.component';
+import { MovieSearchPageComponent } from './movie/movie-search-page/movie-search-page.component';
+import { MyMovieListComponent } from './movie/my-movie-list/my-movie-list.component';
+import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
+
 export const routes: Routes = [
   {
     path: 'list/:category',
-    loadComponent: () =>
-      import('./movie/movie-list-page/movie-list-page.component').then(
-        (m) => m.MovieListPageComponent,
-      ),
+    component: MovieListPageComponent,
   },
   {
     path: 'list/genre/:id',
-    loadComponent: () =>
-      import('./movie/movie-list-page/movie-list-page.component').then(
-        (m) => m.MovieListPageComponent,
-      ),
+    component: MovieListPageComponent,
   },
   {
     path: 'movie/:id',
-    loadComponent: () =>
-      import('./movie/movie-detail-page/movie-detail-page.component').then(
-        (m) => m.MovieDetailPageComponent,
-      ),
+    component: MovieDetailPageComponent,
   },
   {
     path: 'search/:query',
-    loadComponent: () =>
-      import('./movie/movie-search-page/movie-search-page.component').then(
-        (m) => m.MovieSearchPageComponent,
-      ),
+    component: MovieSearchPageComponent,
   },
   {
     path: 'my-movies',
-    loadComponent: () =>
-      import('./movie/my-movie-list/my-movie-list.component').then(
-        (m) => m.MyMovieListComponent,
-      ),
+    component: MyMovieListComponent,
   },
   {
     path: '',
@@ -43,9 +34,6 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    loadComponent: () =>
-      import('./not-found-page/not-found-page.component').then(
-        (m) => m.NotFoundPageComponent,
-      ),
+    component: NotFoundPageComponent,
   },
 ];

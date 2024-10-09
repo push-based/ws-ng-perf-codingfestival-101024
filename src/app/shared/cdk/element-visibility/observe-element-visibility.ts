@@ -12,7 +12,7 @@ export function observeElementVisibility(
     rootMargin?: string;
     threshold?: number;
     stop$?: Observable<any>;
-  }
+  },
 ): Observable<boolean> {
   const { stop$, ..._cgf } = cfg || {};
   return new Observable<boolean>((subscriber) => {
@@ -25,13 +25,13 @@ export function observeElementVisibility(
         rootMargin: '500px',
         threshold: 0.5,
         ..._cgf,
-      }
+      },
     );
     observer.observe(element);
     return () => observer.disconnect();
   }).pipe(
     // only forward changes in visibility
     distinctUntilChanged(),
-    isObservable(stop$) ? takeUntil(stop$) : (o) => o
+    isObservable(stop$) ? takeUntil(stop$) : (o) => o,
   );
 }

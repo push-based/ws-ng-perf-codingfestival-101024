@@ -37,6 +37,11 @@ body {
   }
 }
 
+.movie-card,
+.movie-detail-wrapper {
+  font-family: "Poppins", sans-serif;
+}
+
 body.dark img:not([src*='.svg']) {
   filter: var(--image-filter);
 }

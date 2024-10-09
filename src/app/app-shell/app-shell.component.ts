@@ -5,6 +5,7 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 import { MovieService } from '../movie/movie.service';
+import { TrackingService } from '../shared/tracking.service';
 import { DarkModeToggleComponent } from '../ui/component/dark-mode-toggle/dark-mode-toggle.component';
 import { HamburgerButtonComponent } from '../ui/component/hamburger-button/hamburger-button.component';
 import { SearchBarComponent } from '../ui/component/search-bar/search-bar.component';
@@ -32,6 +33,7 @@ export class AppShellComponent {
 
   genres$ = this.movieService.getGenres();
   private router = inject(Router);
+  private trackingService = inject(TrackingService);
 
   sideDrawerOpen = false;
 
@@ -44,5 +46,7 @@ export class AppShellComponent {
     return this._searchValue;
   }
 
-  constructor() {}
+  trackNavigation(route: string) {
+    this.trackingService.trackEvent(`nav to: ${route}`);
+  }
 }

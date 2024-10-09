@@ -1,45 +1,30 @@
-import { isPlatformBrowser } from '@angular/common';
-import {
-  Directive,
-  ElementRef,
-  Inject,
-  Output,
-  PLATFORM_ID,
-} from '@angular/core';
-import { RxActionFactory } from '@rx-angular/state/actions';
+import { Directive, ElementRef, inject, output } from '@angular/core';
 import { filter, fromEvent, map } from 'rxjs';
-
-type Actions = { visible: boolean; onDestroy: void };
 
 @Directive({
   selector: '[elementVisible]',
-  providers: [RxActionFactory],
   standalone: true,
 })
 export class ElementVisibilityDirective {
-  signals = this.actionsF.create();
+  private elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
 
-  @Output() elementVisible = this.signals.visible$;
+  elementVisible = output();
 
-  constructor(
-    private actionsF: RxActionFactory<Actions>,
-    private elementRef: ElementRef<HTMLElement>,
-    @Inject(PLATFORM_ID) platformId: Object
-  ) {
-    if (isPlatformBrowser(platformId)) {
-      fromEvent(document, 'scroll')
-        .pipe(
-          filter(() => !!document.scrollingElement),
-          map(() => {
-            const { scrollTop, clientHeight } = document.scrollingElement!;
-            return (
-              scrollTop + clientHeight + 100 >=
-              elementRef.nativeElement.offsetTop
-            );
-          }),
-          filter(Boolean)
-        )
-        .subscribe(this.signals.visible);
-    }
+  constructor() {
+    fromEvent(document, 'scroll')
+      .pipe(
+        filter(() => !!document.scrollingElement),
+        map(() => {
+          const { scrollTop, clientHeight } = document.scrollingElement!;
+          return (
+            scrollTop + clientHeight + 100 >=
+            this.elementRef.nativeElement.offsetTop
+          );
+        }),
+        filter(Boolean),
+      )
+      .subscribe(() => {
+        this.elementVisible.emit();
+      });
   }
 }

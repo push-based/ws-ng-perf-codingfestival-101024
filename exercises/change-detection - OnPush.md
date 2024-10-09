@@ -21,11 +21,12 @@ You should aim to use `ChangeDetectionStrategy.OnPush` in all your components.
 Let's start by introducing `ChangeDetectionStrategy.OnPush` to a `Leaf` component, as this is the safest way to migrate.
 This will also help to get a deeper understanding of rendering cycles in the context of the `ComponentTree`.
 
-* add the `<dirty-checks />` component to the `MovieCardComponent`s template (if not done before)
+* add the `<dirty-check />` component to the `MovieCardComponent`s template (if not done before)
 * serve the application & note the initial values
 * interact with the app and observe the counter in the `MovieCardComponent`
 * apply `ChangeDetectionStrategy.OnPush` to `MovieCardComponent`
 * serve the application again and observe how the dirty check amount is decreasing ;)
+* observe how only the hovered movie cards counter is increasing but not the others
 
 <details>
     <summary>MovieCardComponent OnPush</summary>
@@ -34,7 +35,7 @@ This will also help to get a deeper understanding of rendering cycles in the con
 <!-- movie-card.component.html -->
 
 <div class="movie-card">
-  <dirty-checks />
+  <dirty-check />
   <!-- other template -->
 </div>
 ```
@@ -71,7 +72,7 @@ Let's do one more simple but significant change and make our `AppComponent` use 
   selector: 'app-root',
   template: `
     <app-shell>
-      <dirty-checks />
+      <dirty-check />
       <router-outlet />
     </app-shell>
   `,
@@ -98,7 +99,7 @@ way lower than before. This is because the Component now only re-renders when be
 > This is a bonus exercise, you don't need to complete
 
 Try to think about other components that would benefit from the `OnPush` `ChangeDetectionStrategy` and apply it.
-Make sure to first use the `<dirty-checks />` component in order to measure the improvement.
+Make sure to first use the `<dirty-check />` component in order to measure the improvement.
 
 Feel free to ask questions if anything unexpected happens.
 

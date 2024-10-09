@@ -63,6 +63,10 @@ header {
 }
 
 article {
+  padding-right: 4rem;
+  padding-left: 4rem;
+  margin-top: 4rem;
+
   @media only screen and (max-width: 1462.5px) {
     padding-right: 3rem;
     padding-left: 3rem;
@@ -74,10 +78,6 @@ article {
     padding-left: 2rem;
     margin-top: 2rem;
   }
-
-  padding-right: 4rem;
-  padding-left: 4rem;
-  margin-top: 4rem;
 }
 
 section {

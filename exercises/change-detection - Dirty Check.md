@@ -3,7 +3,7 @@
 In this exercise we will focus on basic runtime optimizations in angular applications by using our knowledge about
 the `ChangeDetection` system in angular. Before we can do any optimization, let's get a picture of the current state.
 
-We will create a little helper that will assist us to debug change detection cycles in our application.
+We will create a little helper component that will assist us to debug change detection cycles in our application.
 
 ## 1. Create a dirty checks component
 

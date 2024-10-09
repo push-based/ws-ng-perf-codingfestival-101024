@@ -1,13 +1,13 @@
-import { RxState } from '@rx-angular/state';
 import {
   ChangeDetectionStrategy,
   Component,
   ViewEncapsulation,
 } from '@angular/core';
+import { RxState } from '@rx-angular/state';
 
 @Component({
-    selector: 'ui-dark-mode-toggle',
-    template: `
+  selector: 'ui-dark-mode-toggle',
+  template: `
     <div class="dark-mode-toggle">
       <button type="button" class="light" (click)="setChecked(true)">☀</button>
 
@@ -27,10 +27,10 @@ import {
       <button type="button" class="dark" (click)="setChecked(false)">☾</button>
     </div>
   `,
-    styleUrls: ['dark-mode-toggle.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    encapsulation: ViewEncapsulation.Emulated,
-    standalone: true,
+  styleUrls: ['dark-mode-toggle.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.Emulated,
+  standalone: true,
 })
 export class DarkModeToggleComponent extends RxState<{
   isLightTheme: boolean;

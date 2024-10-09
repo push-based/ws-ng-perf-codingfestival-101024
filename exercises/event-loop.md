@@ -31,3 +31,38 @@ requestAnimationFrame();
 
 </details>
 
+
+<details>
+  <summary>Solution</summary>
+
+```ts
+
+// doesn't matter where
+requestIdleCallback(() => {
+  doWork();
+})
+
+requestAnimationFrame(() => {
+  queueMicrotask(() => {
+    doWork();
+  })
+  doWork();
+})
+requestAnimationFrame(() => {
+  doWork();
+})
+
+setTimeout(() => {
+  doWork();
+  queueMicrotask(() => {
+    doWork();
+  })
+  // move the rAF after the settimeout
+  requestAnimationFrame(() => {
+    doWork();
+  })
+})
+
+```
+</details>
+

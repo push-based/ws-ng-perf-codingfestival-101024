@@ -1,7 +1,6 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 import { Observable, switchMap } from 'rxjs';
 
 import { TMDBMovieModel } from '../../shared/model/movie.model';
@@ -16,7 +15,7 @@ import { MovieListComponent } from '../movie-list/movie-list.component';
     }
   `,
   standalone: true,
-  imports: [MovieListComponent, AsyncPipe, FastSvgComponent],
+  imports: [MovieListComponent, AsyncPipe],
 })
 export class MovieSearchPageComponent {
   private movieService = inject(MovieService);

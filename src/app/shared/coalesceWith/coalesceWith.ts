@@ -6,6 +6,7 @@ import {
   Subscription,
   Unsubscribable,
 } from 'rxjs';
+
 import { coalescingManager } from './coalescingManager';
 
 /**
@@ -42,7 +43,7 @@ import { coalescingManager } from './coalescingManager';
  */
 export function coalesceWith<T>(
   durationSelector: Observable<unknown>,
-  scope?: Record<string, unknown>
+  scope?: Record<string, unknown>,
 ): MonoTypeOperatorFunction<T> {
   const _scope = scope || {};
 
@@ -50,14 +51,14 @@ export function coalesceWith<T>(
     return new Observable<T>((observer) => {
       const rootSubscription = new Subscription();
       rootSubscription.add(
-        source.subscribe(createInnerObserver(observer, rootSubscription))
+        source.subscribe(createInnerObserver(observer, rootSubscription)),
       );
       return rootSubscription;
     });
 
     function createInnerObserver(
       outerObserver: Subscriber<T>,
-      rootSubscription: Subscription
+      rootSubscription: Subscription,
     ): Observer<T> {
       let actionSubscription: Unsubscribable;
       let latestValue: T | undefined;
@@ -98,7 +99,7 @@ export function coalesceWith<T>(
                 tryEmitLatestValue();
                 actionSubscription?.unsubscribe();
                 actionSubscription = undefined;
-              })
+              }),
             );
           }
         },

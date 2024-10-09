@@ -34,21 +34,25 @@ npm run start
 
 [0. Project Setup](./exercises/project%20setup.md)
 
-#### Day 1
+* [Tooling: Performance Analysis & Flame Charts](./exercises/performance-tab-flame-charts.md)
+* [Tooling: JS Event Loop](./exercises/event-loop.md)
+* [INP: Scheduling - chunk work](./exercises/scheduling-chunk-work.md)
+* [Network: Preload & Prefetch](./exercises/network-resource-hints-preload-prefetch.md)
+* [Network: Lazy Loading Resources](./exercises/network-lazy-loading.md)
+* [Network: Image Optimizations](./exercises/ng-optimized-images.md)
+* [SSR: Setup & Gotchas](exercises/ssr%20-%20setup%20%26%20gotchas.md)
+* [SSR: Caching & Server Timing](exercises/ssr-simple-caching-and-server-timing.md)
+* [SSR: Server Routes Configuration](exercises/ssr-server-routes-config.md)
+* [CSS: Forced Reflow ResizeObserver](./exercises/css%20-%20resizeobserver.md)
+* [CSS: Compositor Animations](./exercises/css%20-%20compositor-only-animations.md)
+* [CSS: contain](./exercises/css%20-%20containment.md)
+* [CSS: content-visibility](./exercises/css%20-%20content-visibility.md)
 
-* [Signals Introduction](./exercises/signal-introduction.md)
+### Optional
+
 * [Change Detection: Dirty Check](./exercises/change-detection%20-%20Dirty%20Check.md)
 * [Change Detection: OnPush](./exercises/change-detection%20-%20OnPush.md)
 * [Change Detection: Manual Change Detection](./exercises/change-detection%20-%20manual%20cd.md)
 * [Change Detection: signals](./exercises/change-detection%20-%20signals.md)
-* [Tooling: Performance Analysis & Flame Charts](./exercises/performance-tab-flame-charts.md)
-* [Tooling: JS Event Loop](./exercises/event-loop.md)
-* [INP: Scheduling - chunk work](./exercises/scheduling-chunk-work.md)
-* [Network: Preconnect](./exercises/network-preconnect.md)
-* [Network: Lazy Loading Resources](./exercises/network-lazy-loading.md)
-* [Network: Priority Hints](./exercises/network-priority-hints.md)
-* [Network: Image Optimizations](./exercises/ng-optimized-images.md)
-* [SSR: TBD](TBD)
-* [SSR: TBD](TBD)
-* [SSR: TBD](TBD)
+* [Change Detection: zoneless](./exercises/change-detection%20-%20zoneless.md)
 
